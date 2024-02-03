@@ -1,0 +1,80 @@
+body
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-variant: normal;
+	line-height: normal;
+	color: #000000;
+	background-color: #ffffff;
+	margin: 2px;
+}
+h2
+{
+	margin-top: 0px;
+	margin-bottom: 8px;
+}
+h4
+{
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+th
+{
+	border-bottom: solid 2px #000000;
+}
+table.ruler
+{
+	border:solid 2px #000000;
+	border-collapse: collapse;
+}
+#demo tr.ruled {background:#ffffff;}
+hr{height: 1px;}
+td.weekday{text-align:center;}
+td.event{text-align:left;}
+td.noanswer
+{
+	text-align:center;
+	font-weight: bold;
+	color: #000000;
+}
+p.printnoshow{visibility:hidden;}
+hr.printnoshow{visibility:hidden;}
+
+
+div.container
+{
+	overflow:hidden;
+	margin: 1em auto;
+	margin-top: -15px;
+	text-align: left;
+	width: 700px;
+}
+div.top
+{
+	overflow:hidden;
+	background: url(top.png) no-repeat;
+}
+div.menutop
+{
+  	width: 400px;
+	height: 40px;
+	margin-left: 260px;
+	padding-top: 50px;
+}
+div.middle
+{
+	overflow:hidden;
+	background: url(middle.png);
+}
+div.content
+{
+	float: left;
+	margin-left: 20px;
+}
+div.bottom
+{
+	overflow:hidden;
+	height: 72px;
+	background: url(bottom.png) no-repeat;
+}
+
