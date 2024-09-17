@@ -1,5 +1,4 @@
-body
-{
+body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-variant: normal;
@@ -9,82 +8,96 @@ body
 	background-color: #ffffff;
 	margin: 2px;
 }
-h1
-{
+
+h1 {
 	color: #666666;
 }
-h2
-{
+
+h2 {
 	margin-top: 0px;
 	margin-bottom: 8px;
 	color: #666666;
 }
-h4
-{
+
+h4 {
 	margin-top: 10px;
 	margin-bottom: 8px;
 	color: #666666;
 }
-th
-{
+
+th {
 	color: #666666;
 	border-bottom: solid 2px #dddddd;
 }
-table.ruler
-{
-	border:solid 2px #dddddd;
+
+table.ruler {
+	border: solid 2px #dddddd;
 	border-collapse: collapse;
 }
-#demo tr.ruled {background:#9cf;}
-hr
-{
+
+#demo tr.ruled {
+	background: #9cf;
+}
+
+hr {
 	height: 1px;
 	color: #DBE0E5;
 }
-td.weekday{text-align:center;}
-td.event{text-align:left;}
-td.noanswer
-{
-	text-align:center;
+
+td.weekday {
+	text-align: center;
+}
+
+td.event {
+	text-align: left;
+}
+
+td.noanswer {
+	text-align: center;
 	font-weight: bold;
 	color: #ff0000;
 }
 
+thead {
+	background-color: #f2f2f2;
+}
 
-div.container
-{
-	overflow:hidden;
+tbody tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+div.container {
+	overflow: hidden;
 	margin: 1em auto;
 	margin-top: -15px;
 	text-align: left;
 	width: 700px;
 }
-div.top
-{
-	overflow:hidden;
+
+div.top {
+	overflow: hidden;
 	background: url(top.png) no-repeat;
 }
-div.menutop
-{
-  	width: 400px;
+
+div.menutop {
+	width: 400px;
 	height: 40px;
 	margin-left: 260px;
 	padding-top: 50px;
 }
-div.middle
-{
-	overflow:hidden;
+
+div.middle {
+	overflow: hidden;
 	background: url(middle.png);
 }
-div.content
-{
+
+div.content {
 	float: left;
 	margin-left: 20px;
 }
-div.bottom
-{
-	overflow:hidden;
+
+div.bottom {
+	overflow: hidden;
 	height: 72px;
 	background: url(bottom.png) no-repeat;
 }
-

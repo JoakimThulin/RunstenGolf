@@ -5,7 +5,7 @@ list_players();
 
 //******************************************************************
 function list_players(){
-//Uppdaterad 2021-07-17 av Joakim [joakim.thulin@outlook.com]
+//Uppdaterad 2024-09-16 av Joakim [joakim.thulin@outlook.com]
 
 	try {
 		$dsn = "mysql:host=" . DBSERVER . ";port=3306;dbname=" . DBNAME;
@@ -33,18 +33,15 @@ function list_players(){
 <!DOCTYPE html>
 <html lang='sv'>
 <head>
-    <title>Register i RunstenGolf</title>
-	<meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'> 
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
-    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-    <!--[if IE]><link rel="shortcut icon" href="media/rg32.ico"><![endif]-->
-    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
-    <link rel="apple-touch-icon-precomposed" href="media/rg180.png">
-    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-    <link rel="icon" href="media/rg196.png">
-        <link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
-    <link rel='stylesheet' media='print' type='text/css' href='print.css' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register i RunstenGolf</title>
+  <link rel="icon" type="image/svg+xml" href="media/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="media/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="media/android-chrome-512x512.png" />
+  <link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
+  <link rel='stylesheet' media='print' type='text/css' href='print.css' />
 </head>
 
 <body>
@@ -103,21 +100,23 @@ function list_players(){
 
 	echo "</fieldset>\n";
 	echo "</section>\n";
+?>
 
-	echo "<section>\n";
-	echo "<fieldset style='width:300px'>\n";
-	echo "<legend>Allmänna delar</legend>\n";
-	echo "<p><input type='button' value='Anmälningsformulären' onclick='location.href=\"roster.php\";' /></p>\n";
-	echo "<p><input type='button' value='Hall of Fame' onclick='location.href=\"champs.php\";' /></p>\n";
-	echo "<p><input type='button' value='Spelarregistret' onclick='location.href=\"users.php\";' /></p>\n";
-	echo "<p><input type='button' value='Inbjudningsmall' onclick='location.href=\"invitation.php\";' /></p>\n";
-	echo "<p><input type='button' value='Anmälningsmall till mottagande GK' onclick='location.href=\"teetime.php\";' /></p>\n";
-	echo "</fieldset>\n";
-	echo "</section>\n";
+	<section>
+	<fieldset style='width:300px'>
+	<legend>Allmänna delar</legend>
+	<p><input type="button" value="Anmälningsformulären" onclick="window.open('roster.php', '_blank');" /></p>
+	<p><input type="button" value="Hall of Fame" onclick="window.open('champs.php', '_blank');" /></p>
+	<p><input type="button" value="Spelarregistret" onclick="window.open('users.php', '_blank');" /></p>
+	<p><input type="button" value="Inbjudningsmall" onclick="window.open('invitation.php', '_blank');" /></p>
+	<p><input type="button" value="Anmälningsmall till mottagande GK" onclick="window.open('teetime.php', '_blank');" /></p>
+	</fieldset>
+	</section>
 
-	echo "</body>\n";
-	echo "</html>\n";
+	</body>
+	</html>
 
+<?php
 }
 
 //******************************************************************

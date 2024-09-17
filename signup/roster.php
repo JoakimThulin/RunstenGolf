@@ -1,24 +1,21 @@
 <?php
-// Senast uppdaterad 2018-06-04 av joakim.thulin@outlook.com
+// Senast uppdaterad 2024-09-16 av joakim.thulin@outlook.com
 include "base.php";
 
 ?>
 <!doctype html>
 <html lang="sv-se">
 <head>
-<title>Runstengolf anmälningsformulär</title>
-<meta charset="utf-8">
-<meta name='viewport' content='width=device-width, initial-scale=1.0'> 
-<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
-<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-<!--[if IE]><link rel="shortcut icon" href="media/rg32.ico"><![endif]-->
-<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
-<link rel="apple-touch-icon-precomposed" href="media/rg180.png">
-<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-<link rel="icon" href="media/rg196.png">
-<link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
-<link rel='stylesheet' media='print' type='text/css' href='print.css' />
-<script src=signup.js></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RunstenGolf anmälningsformulär</title>
+  <link rel="icon" type="image/svg+xml" href="media/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="media/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="media/android-chrome-512x512.png" />
+  <link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
+  <link rel='stylesheet' media='print' type='text/css' href='print.css' />
+  <script src=signup.js></script>
 </head>
 <body>
 
@@ -37,12 +34,20 @@ try {
     $thisevent = $db->query("SELECT event FROM sig_events ORDER BY eventyear DESC, event DESC LIMIT 0,1")->fetchColumn();
   }
 
-  $q_event = $db->prepare("SELECT eventyear, description FROM sig_events WHERE event=:e");
+  $q_event = $db->prepare("SELECT eventyear, playdate, location, championship FROM sig_events WHERE event=:e");
   $q_event->bindParam(':e', $thisevent, PDO::PARAM_STR);
   $q_event->execute();
   $result_event = $q_event->fetchObject();
+
   $thisyear = $result_event->eventyear;					
-  $thistitle = "Anmälning till " . utf8_encode($result_event->description);
+  $thisdate = utf8_encode($result_event->playdate);
+  $thislocation = utf8_encode($result_event->location);
+  $ischampionship = $result_event->championship;
+  $eventtype = "Vårträningen";
+  if($ischampionship == 1) {
+    $eventtype = "Mästerskapen";
+  }
+  $thistitle = $eventtype . " " . $thisdate . " " . $thisyear . " på " . $thislocation;
 
   $sql = "SELECT";
   $sql .= " sig_players.player";
@@ -112,16 +117,23 @@ try {
 //  }
   
   $f=-1;
-	foreach($db->query("SELECT event, description FROM sig_events ORDER BY eventyear DESC, event DESC") as $row) {
+	foreach($db->query("SELECT event, eventyear, playdate, location, championship FROM sig_events ORDER BY eventyear DESC, event DESC") as $row) {
     $dbid = $row['event'];
-    $dbname = $row['description'];
+    $dbyear = $row['eventyear'];
+    $dbdate = utf8_encode($row['playdate']);
+    $dblocation = utf8_encode($row['location']);
+    $dbchampionship = $row['championship'];
+    $dbeventtype = "Vårträningen";
+    if($dbchampionship == 1) {
+      $dbeventtype = "Mästerskapen";
+    }
+    $dbentry = $dbeventtype . " " . $dbdate . " " . $dbyear . " på " . $dblocation;
     $sSel = "";
     if($dbid == $thisevent){
       $sSel = " selected='selected'";
-      $chosendbname = utf8_encode($dbname);
     }
     $f++;
-    $cbobox[$f] = "<option value='" . $dbid . "'" . $sSel . ">" . utf8_encode($dbname) . "</option>\n";
+    $cbobox[$f] = "<option value='" . $dbid . "'" . $sSel . ">" . $dbentry . "</option>\n";
 	}
 
   $db = null;

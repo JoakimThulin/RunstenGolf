@@ -4,25 +4,21 @@ eventboard();
 
 //******************************************************************
 function eventboard(){
-// Senast uppdaterad 2018-10-20 av joakim.thulin@outlook.com
+// Senast uppdaterad 2024-09-17 av joakim.thulin@outlook.com
 ?>
 <!doctype html>
 <html lang="sv-se">
 <head>
-<head>
-<title>RunstenGolf tävlingslista</title>
-<meta charset="utf-8">
-<meta name='viewport' content='width=device-width, initial-scale=1.0'> 
-<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
-<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-<!--[if IE]><link rel="shortcut icon" href="media/rg32.ico"><![endif]-->
-<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
-<link rel="apple-touch-icon-precomposed" href="media/rg180.png">
-<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-<link rel="icon" href="media/rg196.png">
-<link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
-<link rel='stylesheet' media='print' type='text/css' href='print.css' />
-<script src=signup.js></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>RunstenGolf tävlingslista</title>
+  <link rel="icon" type="image/svg+xml" href="media/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="media/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="media/android-chrome-512x512.png" />
+	<link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
+	<link rel='stylesheet' media='print' type='text/css' href='print.css' />
+	<script src=signup.js></script>
 </head>
 <body>
 <h2>RunstenGolf tävlingslista</h2>
@@ -42,16 +38,22 @@ $header[3] = "Mästerskap";
 try {
 	$dsn = "mysql:host=" . DBSERVER . ";port=3306;dbname=" . DBNAME . ";charset=utf8;";
 	$db = new PDO($dsn, DBUSER, DBPW);
-	$sql = "SELECT description, event, lockevent, championship FROM sig_events ORDER BY eventyear DESC, event DESC";
+	$sql = "SELECT eventyear, playdate, location, event, lockevent, championship FROM sig_events ORDER BY eventyear DESC, event DESC";
 	$r=-1;
 	foreach($db->query($sql) as $row) {
 		$r++;
-		$event_name = $row['description'];
-		$event_code = $row['event'];
-		$ssd[$r][0] = $event_name;
-		$ssd[$r][1] = $event_code;
+		$dbyear = $row['eventyear'];
+		$dbdate = $row['playdate'];
+		$dblocation = $row['location'];
+		$dbchampionship = $row['championship'];
+		$dbeventtype = "Vårträningen";
+		if($dbchampionship == 1) {
+			$dbeventtype = "Mästerskapen";
+		}
+		$ssd[$r][0] = $dbeventtype . " " . $dbdate . " " . $dbyear . " på " . $dblocation;
+		$ssd[$r][1] = $row['event'];
 		if($row['lockevent'] == 1){$ssd[$r][2] = "Låst";}else{$ssd[$r][2] = "Öppen";}
-		if($row['championship'] == 1){$ssd[$r][3] = "Ja";}else{$ssd[$r][3] = "-";}
+		if($dbchampionship == 1){$ssd[$r][3] = "Ja";}else{$ssd[$r][3] = "-";}
 	}
 	$db = null;
 } catch (PDOException $e) {

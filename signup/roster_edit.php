@@ -3,27 +3,24 @@ include "base.php";
 editform();
 //******************************************************************
 function editform(){
-// Senast uppdaterad 2018-10-21 av joakim.thulin@outlook.com
+// Senast uppdaterad 2024-09-16 av joakim.thulin@outlook.com
 ?>
 <!doctype html>
 <html lang="sv-se">
 <head>
-<title>Redigera anmälning till RunstenGolf</title>
-<meta charset="utf-8">
-<meta name='viewport' content='width=device-width, initial-scale=1.0'> 
-<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
-<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-<!--[if IE]><link rel="shortcut icon" href="media/rg32.ico"><![endif]-->
-<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
-<link rel="apple-touch-icon-precomposed" href="media/rg180.png">
-<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-<link rel="icon" href="media/rg196.png">
-<link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
-<link rel='stylesheet' media='print' type='text/css' href='print.css' />
-<?php $thisevent = $_GET["event"]; ?>
-<script type='text/javascript'>
-function signupList(){window.location='roster.php?event=<?php echo $thisevent; ?>'}
-</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Redigera anmälning till RunstenGolf</title>
+  <link rel="icon" type="image/svg+xml" href="media/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="media/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="media/android-chrome-512x512.png" />
+	<link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
+	<link rel='stylesheet' media='print' type='text/css' href='print.css' />
+	<?php $thisevent = $_GET["event"]; ?>
+	<script type='text/javascript'>
+	function signupList(){window.location='roster.php?event=<?php echo $thisevent; ?>'}
+	</script>
 </head>
 <body>
 
@@ -43,9 +40,17 @@ try {
 	$sunday = $row['sunday'];
 	$notes = $row['notes'];
 
-	$sql = "SELECT description, lockevent FROM sig_events WHERE event='" . $thisevent . "'";
-    $row = $cn->query($sql)->fetch();
-	$thistitle = $row['description'];
+	$sql = "SELECT  eventyear, playdate, location, championship, lockevent FROM sig_events WHERE event='" . $thisevent . "'";
+  $row = $cn->query($sql)->fetch();
+  $dbyear = $row['eventyear'];
+  $dbdate = utf8_encode($row['playdate']);
+  $dblocation = utf8_encode($row['location']);
+  $dbchampionship = $row['championship'];
+  $dbeventtype = "Vårträningen";
+  if($dbchampionship == 1) {
+    $dbeventtype = "Mästerskapen";
+  }
+  $thistitle = $dbeventtype . " " . $dbdate . " " . $dbyear . " på " . $dblocation;
 	$lockevent = $row['lockevent'];
 	
 	$sql = "SELECT player FROM sig_players WHERE id=" . $idplayer;

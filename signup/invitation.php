@@ -1,22 +1,19 @@
 <?php
-// Senast uppdaterad 2021-07-17 av joakim.thulin@outlook.com
+// Senast uppdaterad 2024-09-17 av joakim.thulin@outlook.com
 include "base.php";
 
 ?>
 <!doctype html>
 <html lang="sv-se">
 <head>
-<meta charset="utf-8">
-<title>RunstenGolf inbjudan</title>
-<meta charset="utf-8">
-<meta name='viewport' content='width=device-width, initial-scale=1.0'> 
-<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
-<!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-<!--[if IE]><link rel="shortcut icon" href="media/rg32.ico"><![endif]-->
-<!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
-<link rel="apple-touch-icon-precomposed" href="media/rg180.png">
-<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-<link rel="icon" href="media/rg196.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Runstengolf inbjudan</title>
+  <link rel="icon" type="image/svg+xml" href="media/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="media/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="media/android-chrome-512x512.png" />
+	<link rel='stylesheet' media='screen' type='text/css' href='signup.css' />
 </head>
 
 <?php
@@ -43,7 +40,7 @@ try {
   Prisnivån ser ut så här:
   xxxxxx
   
-  Var vänliga och gå in på anmälningsformuläret http://runstengolf.se/signup/roster.php?event=rrm2020 och kryssa i vilka dagar ni är med eller om ni inte kan delta.
+  Var vänliga och gå in på anmälningsformuläret https://runstengolf.se/signup/roster.php?event=rrm2020 och kryssa i vilka dagar ni är med eller om ni inte kan delta.
     
   Välkomna!
   Eva, Kim, Mats och Micki</td></tr>
